@@ -16,19 +16,19 @@ class Login extends StatelessWidget {
       body: Container(
 
         padding: const EdgeInsets.only(
-          top: 60,
+          top: 80,
           left: 40,
           right: 40,
         ),
-
-        color: Colors.white,
+        
+        color: Colors.greenAccent,
 
         child: ListView(
 
           children: <Widget>[
             
             imageLogo(),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 80,),
             
             textBoxEmail(),                        
             const SizedBox(height: 10,),
@@ -36,7 +36,7 @@ class Login extends StatelessWidget {
             textBoxSenha(),
 
             buttonRecuperarSenha(),
-            const SizedBox(height: 40,),
+            const SizedBox(height: 60,),
 
             enterButton(coresGradient),            
 
@@ -87,13 +87,7 @@ class Login extends StatelessWidget {
 
       child:TextButton(                
         
-        onPressed: () {
-          // Navigator.push(context, 
-          //   MaterialPageRoute(
-          //     builder: (context) => ResetPasswordPage(),//TODO colocar recuperação de senha futuramente
-          //   ),
-          // );
-        },
+        onPressed: () {},
 
         child: const Text("Recuperar Senha", textAlign: TextAlign.right,),                
 
@@ -120,6 +114,18 @@ class Login extends StatelessWidget {
 
         borderRadius: const BorderRadius.all(Radius.circular(5)),
 
+      ),
+      child: SizedBox.expand(
+        child: TextButton(child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              const Text("Login", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20,),),
+              SizedBox(child: Image.asset("images/reciclar.png"),height: 35,width: 35,),
+            ],
+          ),
+          onPressed: () {},
+        ),
+        
       ),
     );
 
