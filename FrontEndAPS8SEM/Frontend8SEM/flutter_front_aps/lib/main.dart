@@ -1,11 +1,12 @@
-import 'package:flutter_front_aps/login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_front_aps/login.dart';
 
 void main() {
-  runApp(MyApp());   
+  runApp(const MyApp());   
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
     
   @override
   
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:const Login(),
+      home:const LoginScreen(),
     );
 
   }

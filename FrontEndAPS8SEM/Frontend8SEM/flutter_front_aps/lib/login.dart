@@ -1,7 +1,8 @@
+import 'busca.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
-  const Login({ Key? key }) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +34,12 @@ class Login extends StatelessWidget {
             textBoxEmail(),                        
             const SizedBox(height: 10,),
 
-            textBoxSenha(),
+            textBoxPassword(),
 
             buttonRecuperarSenha(),
             const SizedBox(height: 60,),
 
-            enterButton(coresGradient),            
+            enterButton(coresGradient, context),            
 
           ],
         ),
@@ -66,7 +67,7 @@ class Login extends StatelessWidget {
 
   }
 
-  TextFormField textBoxSenha() {
+  TextFormField textBoxPassword() {
 
     return TextFormField(
 
@@ -96,7 +97,7 @@ class Login extends StatelessWidget {
 
   }
 
-  Container enterButton(List<Color> coresGradient ) {    
+  Container enterButton(List<Color> coresGradient, BuildContext context ) {    
 
     return Container(
            
@@ -115,15 +116,29 @@ class Login extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(5)),
 
       ),
+
       child: SizedBox.expand(
         child: TextButton(child: Row(
+
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               const Text("Login", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20,),),
               SizedBox(child: Image.asset("images/reciclar.png"),height: 35,width: 35,),
             ],
+            
           ),
-          onPressed: () {},
+          onPressed: () {
+            
+            Navigator.push(
+            
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) => const SearchScreen(),
+              ),
+
+            );
+
+          },
         ),
         
       ),
@@ -138,7 +153,7 @@ class Login extends StatelessWidget {
       labelText: lblText,
     
       labelStyle: const TextStyle(
-        color: Colors.black38,
+        color: Colors.white60,
         fontWeight: FontWeight.w400,
         fontSize: 20,
       ),
