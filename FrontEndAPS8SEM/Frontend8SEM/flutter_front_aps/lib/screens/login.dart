@@ -1,8 +1,19 @@
 import 'busca.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  
   const LoginScreen({ Key? key }) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +42,22 @@ class LoginScreen extends StatelessWidget {
             imageLogo(),
             const SizedBox(height: 80,),
             
-            textBoxEmail(),                        
+            textBoxEmail(emailController),                        
             const SizedBox(height: 10,),
 
-            textBoxPassword(),
+            textBoxPassword(passwordController),
 
             buttonRecuperarSenha(),
             const SizedBox(height: 60,),
 
-            enterButton(coresGradient, context),            
+            enterButton(coresGradient, context, emailController, passwordController),            
 
           ],
         ),
       ),
       
     );
+    
   }
 
   SizedBox imageLogo() {
@@ -58,22 +70,27 @@ class LoginScreen extends StatelessWidget {
 
   }
 
-  TextFormField textBoxEmail() {
+  TextFormField textBoxEmail(TextEditingController emailController) {
 
     return TextFormField(            
       keyboardType: TextInputType.emailAddress,      
-      decoration: estiloTexto("Email")
+      decoration: estiloTexto("Email"),
+      controller: emailController,
+      //add validator
+
     );
 
   }
 
-  TextFormField textBoxPassword() {
+  TextFormField textBoxPassword(TextEditingController passwordController) {
 
     return TextFormField(
 
       keyboardType: TextInputType.text,              
       obscureText: true,
       decoration: estiloTexto("Senha"),
+      controller: passwordController,
+      //add validator
       style: const TextStyle(fontSize: 20),
 
     );
@@ -97,38 +114,70 @@ class LoginScreen extends StatelessWidget {
 
   }
 
-  Container enterButton(List<Color> coresGradient, BuildContext context ) {    
+  Container enterButton(List<Color> coresGradient, BuildContext context, TextEditingController emailController, TextEditingController passwordController ) {    
 
     return Container(
            
       height: 60,
       alignment: Alignment.centerLeft,
-
+      
+      //cor do botão
       decoration: BoxDecoration(
 
         gradient:  LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           stops: const [0.3, 0.7],
-          colors: coresGradient
+          colors: coresGradient,        
         ),
 
         borderRadius: const BorderRadius.all(Radius.circular(5)),
+        
+        //borda do button
+        border: Border.all(          
+          width: 1.5 ,
+          color: Colors.black,
+          style: BorderStyle.solid,                    
+        ),
 
       ),
 
       child: SizedBox.expand(
-        child: TextButton(child: Row(
+        
+        child: TextButton(
+          
+          child: Row(
 
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            
             children: <Widget>[
-              const Text("Login", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20,),),
-              SizedBox(child: Image.asset("images/reciclar.png"),height: 35,width: 35,),
+              
+              const Text("Login",
+                
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+
+              ),
+              
+              SizedBox(
+            
+                child: 
+                  Image.asset("images/reciclar.png"),
+                  height: 35,
+                  width: 35,
+            
+              ),
+
             ],
             
           ),
+
           onPressed: () {
-            
+           
+            //add validacao do login
             Navigator.push(
             
               context,
@@ -139,6 +188,7 @@ class LoginScreen extends StatelessWidget {
             );
 
           },
+
         ),
         
       ),
@@ -162,5 +212,4 @@ class LoginScreen extends StatelessWidget {
 
     return estiloTexto;
   }
-
 }
