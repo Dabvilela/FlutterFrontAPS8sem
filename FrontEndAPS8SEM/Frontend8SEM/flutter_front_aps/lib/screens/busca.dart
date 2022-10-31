@@ -10,7 +10,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
 
   final dropValueTipos = ValueNotifier('');
-  final dropOpcaoTipos = ['Eletronicos'];//array de tipos
+  final dropOpcaoTipos = ['Eletronicos', ''];//array de tipos
 
   final dropValueResiduos = ValueNotifier('');
   final droOpcaoResiduos = ['Pilhas', 'Entulhos','Lixo Tóxico', 'Reciclavel'];// array de residuos
@@ -65,7 +65,8 @@ class _SearchScreenState extends State<SearchScreen> {
                   backgroundColor: Colors.green,
                   child: const Icon(Icons.search),
                   onPressed: (){
-                   //criar funçao para consumir as API 
+                    //criar funçao para consumir as API
+
                   },
 
                 )
@@ -107,13 +108,65 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-}
 
-class ViaCep{
-  int id = 0; 
-  
+
 }
 
 class Residuos{
+  String? id;
+  String? tipoNome;
+  String? nome;
+  String? descricao;
+  String? cep;
+  String? numero;
+  
+  Residuos(
+    {
+      this.id,
+      this.tipoNome,
+      this.nome,
+      this.descricao,
+      this.cep,
+      this.numero,   
+    }
+  );   
+}
+class ViaCep{
+  String? cep; 
+  String? logradouro;
+  String? complemento;
+  String? localidade;
+  String? uf;
+  String? ibge;
+  String? gia;
+  String? ddd;
+  String? siafi;
 
+  ViaCep(
+    {
+      this.cep,
+      this.logradouro,
+      this.complemento,
+      this.localidade,
+      this.uf,
+      this.ibge,
+      this.gia,
+      this.ddd,
+      this.siafi,
+    }
+  );  
+}
+
+class PontosColeta{
+  String? descricao;
+  String? cep;
+  String? numero;
+
+  PontosColeta(
+    {
+      this.descricao,
+      this.cep,
+      this.numero,
+    }
+  );
 }
