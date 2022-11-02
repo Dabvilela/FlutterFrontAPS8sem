@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'model/Residuos.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({ Key? key }) : super(key: key);
@@ -65,9 +68,10 @@ class _SearchScreenState extends State<SearchScreen> {
 
                   backgroundColor: Colors.green,
                   child: const Icon(Icons.search),
-                  onPressed: (){
+                  onPressed: () async {
                     //criar funçao para consumir as API
                     
+                    final resp = await findModel();
                   },
 
                 )
@@ -107,6 +111,16 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
 
     );
+  }
+
+  Future<List<Residuos?>> findModel() async {
+        
+    const url = "localhost:8081/api/v1/residuos/pilhas";
+
+    final response = await http.get(Uri.parse(url));
+    final List<dynamic> responseMap = jsonDecode(response.body);
+    return responseMap.map<Residuos?>((resp)=>Residuos.fromMap(resp)).toList();
+    
   }
   
 }
