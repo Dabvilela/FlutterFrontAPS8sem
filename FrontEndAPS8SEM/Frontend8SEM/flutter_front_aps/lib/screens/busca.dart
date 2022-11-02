@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({ Key? key }) : super(key: key);
@@ -66,7 +67,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: const Icon(Icons.search),
                   onPressed: (){
                     //criar funçao para consumir as API
-
+                    
                   },
 
                 )
@@ -107,66 +108,5 @@ class _SearchScreenState extends State<SearchScreen> {
 
     );
   }
-
-
-
-}
-
-class Residuos{
-  String? id;
-  String? tipoNome;
-  String? nome;
-  String? descricao;
-  String? cep;
-  String? numero;
   
-  Residuos(
-    {
-      this.id,
-      this.tipoNome,
-      this.nome,
-      this.descricao,
-      this.cep,
-      this.numero,   
-    }
-  );   
-}
-class ViaCep{
-  String? cep; 
-  String? logradouro;
-  String? complemento;
-  String? localidade;
-  String? uf;
-  String? ibge;
-  String? gia;
-  String? ddd;
-  String? siafi;
-
-  ViaCep(
-    {
-      this.cep,
-      this.logradouro,
-      this.complemento,
-      this.localidade,
-      this.uf,
-      this.ibge,
-      this.gia,
-      this.ddd,
-      this.siafi,
-    }
-  );  
-}
-
-class PontosColeta{
-  String? descricao;
-  String? cep;
-  String? numero;
-
-  PontosColeta(
-    {
-      this.descricao,
-      this.cep,
-      this.numero,
-    }
-  );
 }
